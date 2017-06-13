@@ -1,0 +1,202 @@
+html{
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	font-family: "Microsoft YaHei";
+	background-color: #eee;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+input:focus{
+	outline: none;
+}
+li{
+	list-style-type: none;
+}
+.clear{
+	clear: both;
+}
+
+html, body{
+	width: 100%;
+	height: 100%;
+}
+
+/* header */
+.header{
+	width: 100%;
+	height: 50px;
+	background-color: #FE7556;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+.header .title{
+	width: ;
+	height: 100%;
+	font-size: 20px;
+	color: #fff;
+	line-height: 50px;
+	float: left;
+	margin-left: 20px;
+}
+.header .sign-out{
+	width: ;
+	height: 100%;
+	float: right;
+	line-height: 50px;
+	font-size: 20px;
+	margin-right: 20px;
+}
+.header .sign-out a{
+	color: #fff;
+}
+.header .sign-out a:hover{
+	color: rgba(0, 0, 0, 0.5);
+}
+
+/* nav */
+.nav{
+	width: 80px;
+	height: 100%;
+	background-color: #4A4C63;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+.nav ul{
+	list-style-type: none;
+}
+.nav ul li{
+	width: 100%;
+	height: ;
+	text-align: center;
+	padding-top: 70px;
+}
+.nav ul .in a{
+	font-size: 50px;
+}
+.nav ul li a{
+	color: #fff;
+	font-size: 30px;
+}
+.nav ul li a:hover{
+	font-size: 50px;
+}
+/*.nav-list{
+	position: absolute;
+	top: 200px;
+	left: 60px;
+	z-index: 4;
+}*/
+.nav-list ul .book{
+	display: none;
+	position: absolute;
+	top: 190px;
+	left: 60px;
+	z-index: 4;
+}
+.nav-list ul li .triangle{
+	width: 0;
+	height: 0;
+	border: 8px solid;
+	border-color: transparent #fff transparent transparent;
+	float: left;
+	margin-top: 20px;
+}
+.nav-list ul li .list-value{
+	padding: 10px 20px 10px 20px;
+	background-color: #333;
+	border-radius: 5px;
+	float: left;
+}
+.nav-list ul li .list-value a{
+	display: block;
+	height: 35px;
+	line-height: 35px;
+	color: #fff;
+}
+.nav-list ul li .list-value a:hover{
+	font-size: 18px;
+}
+/* message */
+.nav-list ul .message{
+	position: absolute;
+	top: 320px;
+	left: 60px;
+	z-index: 4;
+	display: none;
+}
+/* comment */
+.nav-list ul .comment{
+	position: absolute;
+	top: 430px;
+	left: 60px;
+	z-index: 4;
+	display: none;
+}
+/* user */
+.nav-list ul .user{
+	display: none;
+	position: absolute;
+	top: 540px;
+	left: 60px;
+	z-index: 4;
+}
+/* main */
+.main{
+	position: absolute;
+	top: 50px;
+	left: 80px;
+	height: 500px;
+}
+/* table */
+.main .table{
+	width: ;
+	height: ;
+	margin-left: 80px;
+	margin-top: 35px;
+	border-collapse: collapse;
+}
+.main .table tr{
+	height: 50px;
+	border-bottom: 1px solid #3F48CC;
+}
+td, th{
+	border: 0;
+}
+/* table head */
+.main .table .tr-title{
+	background-color: #3F48CC;
+	color: #fff;
+	border-bottom-width: 0;
+	height: 35px;
+
+}
+.main .table .tr-title .id{
+	width: 50px;
+}
+.main .table .tr-title .title{
+	
+}
+.main .table .tr-title .modify{
+	width: 50px;
+}
+.main .table .tr-title .delete{
+	width: 50px;
+}
+/* table value */
+.main .table .tr-value a{
+	color: #00A2E8;
+}
+.main .table .tr-value a:hover{
+	font-size: 35px;
+}
