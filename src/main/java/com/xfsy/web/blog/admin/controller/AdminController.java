@@ -1,6 +1,6 @@
 package com.xfsy.web.blog.admin.controller;
 
-import com.xfsy.web.blog.admin.service.EssayService;
+import com.xfsy.web.blog.admin.service.AdminService;
 import com.xfsy.web.blog.bean.PageBean;
 import com.xfsy.web.blog.entity.Comment;
 import com.xfsy.web.blog.entity.Essay;
@@ -8,7 +8,6 @@ import com.xfsy.web.blog.entity.Tag;
 import com.xfsy.web.blog.entity.User;
 import com.xfsy.web.blog.index.controller.IndexController;
 import com.xfsy.web.blog.util.Util;
-import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,8 +46,8 @@ public class AdminController {
     }
 
     /* Essay */
-    @Resource(name = "essayService")
-    private EssayService essayService;
+    @Resource(name = "adminService")
+    private AdminService adminService;
     /**
      * 文章列表
      * @return
@@ -62,7 +61,7 @@ public class AdminController {
         /*essayService.select();
         List<Essay> list = essayService.select();
         request.setAttribute("list", list);*/
-        PageBean pageBean = essayService.selectPage(Integer.valueOf(pageNo), 10);
+        PageBean pageBean = adminService.selectPage(Integer.valueOf(pageNo), 10);
         request.setAttribute("page", pageBean);
         List<Essay> list = pageBean.getList();
         request.setAttribute("list", list);
@@ -115,7 +114,7 @@ public class AdminController {
             tagSet.add(tag);
         }
         essay.setTags(tagSet);
-        essayService.add(essay);
+        adminService.add(essay);
         response.setContentType("text/html; charset = utf-8");
         try {
             PrintWriter out = response.getWriter();
@@ -130,8 +129,10 @@ public class AdminController {
      * 文章修改
      * @return
      */
-    @RequestMapping(value = "essay-update")
-    public String essayUpdate() {
+    @RequestMapping(value = "essay-update/{id}")
+    public String essayUpdate(@PathVariable(value = "id") Integer id, HttpServletRequest request) {
+        Essay essay = adminService.selectEssayById(id);
+        request.setAttribute("essay", essay);
         return "admin/essay/update";
     }
 
@@ -139,6 +140,7 @@ public class AdminController {
      * 文章修改实现
      * @return
      */
+    @RequestMapping(value = "essay-update-impl")
     public ModelAndView essayUpdateImpl() {
         return null;
     }
@@ -149,7 +151,7 @@ public class AdminController {
      */
     @RequestMapping(value = "essay-delete/{id}", method = RequestMethod.GET)
     public ModelAndView essayDeleteById(@PathVariable(value = "id") Integer id) {
-        int rowNum = essayService.essayDeleteById(id);
+        int rowNum = adminService.essayDeleteById(id);
         System.out.println("rowNum: " + rowNum);
         //友好交互
         String tip, intent, number;
@@ -168,7 +170,7 @@ public class AdminController {
     // 用户列表
     @RequestMapping(value = "user-list")
     public String user(HttpServletRequest request) {
-        List<User> list = essayService.selectUsers();
+        List<User> list = adminService.selectUsers();
         request.setAttribute("list", list);
         return "/admin/user/list";
     }
@@ -176,7 +178,7 @@ public class AdminController {
     // 评论列表
     @RequestMapping(value = "comment-list")
     public String comment(HttpServletRequest request) {
-        List<Comment> list = essayService.selectComments();
+        List<Comment> list = adminService.selectComments();
         request.setAttribute("list", list);
         return "/admin/comment/list";
     }

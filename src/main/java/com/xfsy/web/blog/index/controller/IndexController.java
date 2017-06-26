@@ -5,7 +5,7 @@ import com.xfsy.web.blog.bean.PageBean;
 import com.xfsy.web.blog.entity.Comment;
 import com.xfsy.web.blog.entity.Essay;
 import com.xfsy.web.blog.entity.User;
-import com.xfsy.web.blog.index.service.EssayService;
+import com.xfsy.web.blog.index.service.IndexService;
 import com.xfsy.web.blog.util.Constant;
 import com.xfsy.web.blog.util.Util;
 import org.springframework.stereotype.Controller;
@@ -31,8 +31,8 @@ import java.util.*;
 @Controller
 public class IndexController {
 
-    @Resource(name = "index_essayService")
-    private EssayService essayService;
+    @Resource(name = "indexService")
+    private IndexService indexService;
 
     /*首页*/
     @RequestMapping("index")
@@ -47,7 +47,7 @@ public class IndexController {
         int pageNo = Integer.valueOf(noStr);
         //每页显示多少条数据
         int pageSize = Constant.PAGE_SIZE;
-        PageBean pageBean = essayService.selectCatalogPages(pageNo, pageSize);
+        PageBean pageBean = indexService.selectCatalogPages(pageNo, pageSize);
         // 分页数据
         request.setAttribute("page", pageBean);
         // 博文数据
@@ -69,7 +69,7 @@ public class IndexController {
         int pageNo = Integer.valueOf(p);
         //每页显示多少条数据
         int pageSize = Constant.PAGE_SIZE;
-        PageBean pageBean = essayService.selectCatalogPages(pageNo, pageSize);
+        PageBean pageBean = indexService.selectCatalogPages(pageNo, pageSize);
         // 博文数据
         List<Essay> list = pageBean.getList();
 
@@ -109,7 +109,7 @@ public class IndexController {
     //文章浏览
     @RequestMapping(value = "essay/{id}")
     public String essay(@PathVariable("id") Integer id, HttpServletRequest request) {
-        Essay essay = essayService.selecEssay(id);
+        Essay essay = indexService.selecEssay(id);
         request.setAttribute("essay", essay);
         request.setAttribute("comment", Util.sortCommentByTime(essay.getComments())); // 需要根据时间或者ID来排序
         Set<Comment> set = essay.getComments();
@@ -156,7 +156,7 @@ public class IndexController {
 
             //文章
             String essay_id = request.getParameter("essay_id");
-            Essay essay = essayService.selecEssay(Integer.valueOf(essay_id));
+            Essay essay = indexService.selecEssay(Integer.valueOf(essay_id));
 
             Comment comment = new Comment();
             comment.setContent(content);
@@ -176,7 +176,7 @@ public class IndexController {
             set.add(comment);
             user.setComments(set);
 
-            boolean result = essayService.comment(user);
+            boolean result = indexService.comment(user);
 
             if (result) {
                 tip = "操作成功，即将跳转，请稍等···";

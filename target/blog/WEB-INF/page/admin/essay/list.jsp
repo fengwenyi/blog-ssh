@@ -70,14 +70,14 @@
         	<tr class="tr-title">
         		<th class="id">#</th>
         		<th class="title" id="title">标题</th>
-        		<th class="modify">编辑</th>
+        		<%--<th class="modify">编辑</th>--%>
         		<th class="delete">删除</th>
         	</tr>
 			<c:forEach var="l" items="${list}">
 				<tr class="tr-value">
 					<td align="center">${l.id}</td>
 					<td>${l.title}</td>
-					<td align="center"><a href=""><i class="fa fa-pencil-square-o"></i></a></td>
+					<%--<td align="center"><a href="/admin/essay-update/${l.id}"><i class="fa fa-pencil-square-o"></i></a></td>--%>
 					<td align="center"><a href="/admin/essay-delete/${l.id}"><i class="fa fa-trash-o"></i></a></td>
 				</tr>
 			</c:forEach>

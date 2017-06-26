@@ -2,7 +2,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 父上下文 包扫描 -->
@@ -58,7 +57,6 @@
             <list>
                 <value><!--读取和实体相关的xml-->
                     classpath:xfsy.hibernate.xml
-                    <!--classpath*:com/tgb/web/controller/hibernate/hibernate.cfg.test.xml-->
                 </value>
             </list>
         </property>
@@ -70,19 +68,19 @@
 
     <tx:annotation-driven transaction-manager="txManager"></tx:annotation-driven>
 
-    <bean id="essayDao" class="com.xfsy.web.blog.admin.dao.impl.EssayDaoImpl">
+    <bean id="adminDao" class="com.xfsy.web.blog.admin.dao.impl.AdminDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean id="essayService" class="com.xfsy.web.blog.admin.service.impl.EssayServiceImpl">
-        <property name="essayDao" ref="essayDao"></property>
+    <bean id="adminService" class="com.xfsy.web.blog.admin.service.impl.AdminServiceImpl">
+        <property name="adminDao" ref="adminDao"></property>
     </bean>
 
-    <bean id="index_essayDao" class="com.xfsy.web.blog.index.dao.impl.EssayDaoImpl">
+    <bean id="indexDao" class="com.xfsy.web.blog.index.dao.impl.IndexDaoImpl">
         <property name="index_sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean id="index_essayService" class="com.xfsy.web.blog.index.service.impl.EssayServideImpl">
-        <property name="index_essayDao" ref="index_essayDao"></property>
+    <bean id="indexService" class="com.xfsy.web.blog.index.service.impl.IndexServideImpl">
+        <property name="indexDao" ref="indexDao"></property>
     </bean>
 </beans>
